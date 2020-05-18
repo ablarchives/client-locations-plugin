@@ -1,0 +1,4 @@
+1.0.1: First version of Client Locations
+1.0.2:
+  - 'Create the client locations table'
+  - create_locations_table.php

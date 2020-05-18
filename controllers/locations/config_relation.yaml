@@ -1,0 +1,12 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+locations:
+    label: ' '
+    view:
+        list: $/albrightlabs/clientlocations/models/location/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/albrightlabs/clientlocations/models/location/fields.yaml
+        recordsPerPage: 10
