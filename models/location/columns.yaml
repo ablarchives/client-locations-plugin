@@ -21,3 +21,13 @@ columns:
         path: column_location
         select: concat(street, city, state, zip)
         searchable: true
+    updated_at:
+        label: Updated
+        type: date
+        format: n/j/Y g:ia
+        invisible: true
+    created_at:
+        label: Created
+        type: date
+        format: n/j/Y g:ia
+        invisible: true

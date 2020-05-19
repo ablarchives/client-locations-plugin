@@ -63,7 +63,9 @@ class Location extends Model
      */
     public $hasOne = [];
     public $hasMany = [];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'client' => 'AlbrightLabs\Client\Models\Client',
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];

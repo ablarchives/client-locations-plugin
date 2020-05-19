@@ -50,14 +50,25 @@ class Plugin extends PluginBase
      */
     public function boot()
     {
-        // Add the relation
+        // Add relation to AlbrightLabs.Client Client model
         Client::extend(function($model) {
             $model->hasMany['locations'] = ['AlbrightLabs\ClientLocations\Models\Location'];
         });
+
+        // Add relation config to AlbrightLabs.Client Clients controller
         Clients::extend(function($controller){
-            if(!isset($controller->implement['Backend.Behaviors.RelationController']))
-                $controller->implement[] = 'Backend.Behaviors.RelationController';
-            $controller->relationConfig = '$/albrightlabs/clientlocations/controllers/locations/config_relation.yaml';
+            // Only for the Clients controller
+            if (!$controller instanceof \AlbrightLabs\Client\Controllers\Clients) {
+                return;
+            }
+            if (!isset($controller->relationConfig)) {
+                $controller->addDynamicProperty('relationConfig');
+            }
+            $myConfigPath = '$/albrightlabs/clientlocations/controllers/locations/config_relation.yaml';
+            $controller->relationConfig = $controller->mergeConfig(
+                $controller->relationConfig,
+                $myConfigPath
+            );
         });
 
         // Extend all backend form usage
