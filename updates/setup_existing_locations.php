@@ -12,6 +12,7 @@ class SetupExistingLocations extends Seeder
         foreach($clients as $client){
             if(null != $client->street || null != $client->city || null != $client->state || null != $client->zip){
                 $location = new Location;
+                $location->title = 'Default';
                 if(null != $client->street){
                     $location->street = $client->street;
                 }
