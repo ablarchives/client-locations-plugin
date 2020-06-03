@@ -27,21 +27,13 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Requires AlbrightLabs.Client plugin
+     * Returns required plugins.
+     *
+     * @return array
      */
     public $require = [
         'AlbrightLabs.Client',
     ];
-
-    /**
-     * Register method, called when the plugin is first registered.
-     *
-     * @return void
-     */
-    public function register()
-    {
-
-    }
 
     /**
      * Boot method, called right before the request route.
@@ -52,13 +44,13 @@ class Plugin extends PluginBase
     {
         // Add relation to AlbrightLabs.Client Client model
         Client::extend(function($model) {
-            $model->hasMany['locations'] = ['AlbrightLabs\ClientLocations\Models\Location'];
+            $model->hasMany['locations'] = ['AlbrightLabs\ClientLocations\Models\Location', 'delete' => true];
         });
 
         // Add relation config to AlbrightLabs.Client Clients controller
         Clients::extend(function($controller){
             // Only for the Clients controller
-            if (!$controller instanceof \AlbrightLabs\Client\Controllers\Clients) {
+            if (!$controller instanceof Clients) {
                 return;
             }
             if (!isset($controller->relationConfig)) {
@@ -75,22 +67,24 @@ class Plugin extends PluginBase
         Event::listen('backend.form.extendFields', function($widget) {
 
             // Only for the Clients controller
-            if (!$widget->getController() instanceof \AlbrightLabs\Client\Controllers\Clients) {
+            if (!$widget->getController() instanceof Clients) {
                 return;
             }
 
             // Only for the Client model
-            if (!$widget->model instanceof \AlbrightLabs\Client\Models\Client) {
+            if (!$widget->model instanceof Client) {
                 return;
             }
 
             // Add the loctions list field
             $widget->addTabFields([
                 'locations' => [
-                    'label' => 'Locations',
                     'type'  => 'partial',
                     'path'  => '$/albrightlabs/clientlocations/controllers/locations/_field_locations.htm',
                     'tab'   => 'Locations',
+                    'context'    => [
+                        'preview',
+                    ],
                 ],
             ]);
 
@@ -110,7 +104,7 @@ class Plugin extends PluginBase
             }
 
             // Only for the User model
-            if (!$widget->model instanceof \AlbrightLabs\Clint\Models\Client) {
+            if (!$widget->model instanceof \AlbrightLabs\Client\Models\Client) {
                 return;
             }
 

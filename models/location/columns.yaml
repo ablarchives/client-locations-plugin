@@ -8,9 +8,10 @@ columns:
         searchable: true
         invisible: true
     is_default:
-        label: Default
+        label: ''
         type: partial
         path: $/albrightlabs/clientlocations/controllers/locations/_column_default.htm
+        sortable: false
         width: 10px
     title:
         label: Title

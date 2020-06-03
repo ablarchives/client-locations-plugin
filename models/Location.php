@@ -1,7 +1,7 @@
 <?php namespace AlbrightLabs\ClientLocations\Models;
 
 use Model;
-use AlbrightLabs\Client\Models\Client;
+use Bc\Clients\Models\Client;
 
 /**
  * Location Model
@@ -23,12 +23,18 @@ class Location extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = ['title', 'street', 'city', 'state', 'zip', 'is_default'];
 
     /**
      * @var array Validation rules for attributes
      */
-    public $rules = [];
+    public $rules = [
+      'title'  => 'between:2,255',
+      'street' => 'required|between:2,255',
+      'city'   => 'required|between:2,255',
+      'state'  => 'required|between:2,255',
+      'zip'    => 'required|digits:5',
+    ];
 
     /**
      * @var array Attributes to be cast to native types
@@ -62,9 +68,13 @@ class Location extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'estimates' => 'Bc\Pay\Models\Estimate',
+        'invoices' => 'Bc\Pay\Models\Invoice',
+        'bookings' => 'AlbrightLabs\Book\Models\Booking',
+    ];
     public $belongsTo = [
-        'client' => 'AlbrightLabs\Client\Models\Client',
+        'client' => 'Bc\Clients\Models\Client',
     ];
     public $belongsToMany = [];
     public $morphTo = [];
@@ -76,14 +86,13 @@ class Location extends Model
     /**
      * Set default if needed
      */
-    public function beforeSave()
+    public function afterSave()
     {
-        if($this->is_default){
-            $locations = Client::find($this->client_id)->locations;
-            foreach($locations as $location){
-                $location->is_default = 0;
-                $location->save();
-            }
-        }
+        // if($this->is_default && $client = Client::find($this->client_id))){
+        //     foreach($client->locations as $location){
+        //         $location->is_default = 0;
+        //         $location->save();
+        //     }
+        // }
     }
 }

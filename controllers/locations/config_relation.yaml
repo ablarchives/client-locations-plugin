@@ -3,7 +3,7 @@
 # ===================================
 
 locations:
-    label: ' '
+    label: 'Location'
     view:
         list: $/albrightlabs/clientlocations/models/location/columns.yaml
         toolbarButtons: create|delete

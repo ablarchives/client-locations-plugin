@@ -2,3 +2,6 @@
 1.0.2:
   - 'Create the client locations table'
   - create_locations_table.php
+1.0.3:
+  - 'Added location fixer for existing clients'
+  - setup_existing_locations.php

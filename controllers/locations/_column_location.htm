@@ -1,2 +1,5 @@
-<?php $defaultAddress = $record->locations->where('is_default', 1)->first(); ?>
-<?php if($defaultAddress->street): ?><?= $defaultAddress->street; ?>, <?php endif; ?><?php if($defaultAddress->city): ?><?= $defaultAddress->city; ?>, <?php endif; ?><?php if($defaultAddress->state): ?><?= $defaultAddress->state; ?><?php endif; ?><?php if($defaultAddress->zip): ?> <?= $defaultAddress->zip ?><?php endif; ?>
+<?php if($record->locations){ ?>
+    <?php if($defaultAddress = $record->locations->where('is_default', 1)->first()){ ?>
+        <?php if($defaultAddress->street): ?><?= $defaultAddress->street; ?>, <?php endif; ?><?php if($defaultAddress->city): ?><?= $defaultAddress->city; ?>, <?php endif; ?><?php if($defaultAddress->state): ?><?= $defaultAddress->state; ?><?php endif; ?><?php if($defaultAddress->zip): ?> <?= $defaultAddress->zip ?><?php endif; ?>
+    <?php } ?>
+<?php } ?>
