@@ -14,15 +14,8 @@ This plugin extends the Albright Client plugin and replaces the single address i
 
 **Install**  
 There are two options:
-- `git clone https://github.com/albrightlabs/client-locations-plugin.git plugins/albrightlabs/clientlocations` and run `php artisan october:up` or
-- `git submodule add -b master https://github.com/albrightlabs/client-locations-plugin.git plugins/albrightlabs/clientlocations` and run `php artisan october:up`
-
-**Update**  
-- `git pull origin master` or
-- `git pull --recursive-submodules`
-
-**Usage**  
-Simply install plugin and access via navigation.
+1. `git clone https://github.com/albrightlabs/client-locations-plugin.git plugins/albrightlabs/clientlocations` and run `php artisan october:up` or
+2. `git submodule add -b master https://github.com/albrightlabs/client-locations-plugin.git plugins/albrightlabs/clientlocations` and run `php artisan october:up`
 
 **Contribute**  
 Feel free to fork and contribute to this plugin! Please email support@albrightlabs.com with any and all questions.
