@@ -11,6 +11,7 @@ This plugin extends the Albright Client plugin and replaces the single address i
 - Adds multiple location input and attachment to client
 - Allows each client to have a default location
 - Each location can have a title, street line 1, street line 2, city, state, zip, and default checkbox
+- When plugin is installed, it will create new default location for each client with a location
 
 **Install**  
 There are two options:
